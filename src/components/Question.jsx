@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@mui/material"
 import styled from "@emotion/styled"
 import QuestionBtn from "./QuestionBtn"
@@ -61,11 +62,11 @@ const BoxQ = styled(Box)`
     }
 `
 
-const url = 'https://restcountries.com/v3.1/all'
+let i = Math.floor(Math.random()*250)
 
-const Question = () =>{
-
-
+const Question = ({paises}) =>{
+    
+    const q1 = `What is the capital of ${paises ? paises[i].name.common : '...'}`
 
     
     return(
@@ -75,7 +76,7 @@ const Question = () =>{
                 <img src={adventure}/>
             </div>
             <div className="question">
-                <h2>Question</h2>
+                <h2>{q1}</h2>
                 <div className="options-box">
                     <QuestionBtn letter = {'a'} question = {'a'}></QuestionBtn>
                     <QuestionBtn letter = {'b'} question = {'b'}></QuestionBtn>
