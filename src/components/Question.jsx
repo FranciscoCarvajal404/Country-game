@@ -7,23 +7,28 @@ import adventure from "../assets/adventure.svg"
 const BoxQ = styled(Box)`
 
     width: 100%;
-    max-width: 400px;
+    max-width: 464px;
 
     .title{
         display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        position: relative;
+        top: 40px;
 
         h1{
-            font-size: 1.5rem;
-            font-weight: bold;
-            position: relative;
-            top: 55px;
+            color: #F2F2F2;
+            font-size: 1.55rem;
+            font-family: Poppins;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         img{
-            width: 150px;
-            position: relative;
-            right: -6%;
-            top: 40px;
+            width: 10.125rem;
+            height: 7.25rem;
+            flex-shrink: 0;
         }
     }
     
@@ -47,8 +52,12 @@ const BoxQ = styled(Box)`
         gap: 32px;
     }
 
-    .active{
-
+    @media (width >= 1024px){
+        .title{
+            h1{
+                font-size: 2.25rem;
+            }
+        }
     }
 `
 
