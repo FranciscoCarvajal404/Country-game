@@ -14,6 +14,13 @@ const ButtonQ = styled(Button)`
     border: 1px solid #5256a1;
 
     tab-size: 8;
+    font-family: 'Poppins', sans-serif; 
+
+    :hover{
+        background-color: #F9A826;
+        border-color: #F9A826;
+        color: rgba(255, 255, 255, 0.87);
+    }
 
     span{
         font-weight: 600;

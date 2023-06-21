@@ -3,7 +3,6 @@ import styled from "@emotion/styled"
 import QuestionBtn from "./QuestionBtn"
 
 import adventure from "../assets/adventure.svg"
-import { Suspense } from "react"
 
 const BoxQ = styled(Box)`
 
@@ -47,27 +46,34 @@ const BoxQ = styled(Box)`
         flex-direction: column;
         gap: 32px;
     }
+
+    .active{
+
+    }
 `
+
+const url = 'https://restcountries.com/v3.1/all'
+
 const Question = () =>{
 
 
+
+    
     return(
         <BoxQ>
-            <Suspense fallback={<div>Loading...</div>}>
-                <div className="title">
-                    <h1>COUNTRY QUIZ</h1>
-                    <img src={adventure}/>
+            <div className="title">
+                <h1>COUNTRY QUIZ</h1>
+                <img src={adventure}/>
+            </div>
+            <div className="question">
+                <h2>Question</h2>
+                <div className="options-box">
+                    <QuestionBtn letter = {'a'} question = {'a'}></QuestionBtn>
+                    <QuestionBtn letter = {'b'} question = {'b'}></QuestionBtn>
+                    <QuestionBtn letter = {'C'} question = {'c'}></QuestionBtn>
+                    <QuestionBtn letter = {'D'} question = {'d'}></QuestionBtn>
                 </div>
-                <div className="question">
-                    <h2>Question</h2>
-                    <div className="options-box">
-                        <QuestionBtn letter = {'a'} question = {'a'}></QuestionBtn>
-                        <QuestionBtn letter = {'b'} question = {'b'}></QuestionBtn>
-                        <QuestionBtn letter = {'C'} question = {'c'}></QuestionBtn>
-                        <QuestionBtn letter = {'D'} question = {'d'}></QuestionBtn>
-                    </div>
-                </div>
-            </Suspense>
+            </div>
         </BoxQ>
     )
 }

@@ -7,6 +7,10 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #5256a1;
   background-image: url(./assets/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
