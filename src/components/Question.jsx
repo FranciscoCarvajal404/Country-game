@@ -67,33 +67,31 @@ const Question = ({paises}) =>{
     
     
     //Renderizacion de botones con sus opciones
-    let i = Math.floor(Math.random()*250)
-    let j = Math.floor(Math.random()*250)
-    let k = Math.floor(Math.random()*250)
-    let l = Math.floor(Math.random()*250)
+    let i = Math.floor(Math.random()*251)
+    let j = Math.floor(Math.random()*251)
+    let k = Math.floor(Math.random()*251)
+    let l = Math.floor(Math.random()*251)
     let order = [0,1,2,3]
     let opciones = [
-        paises && (paises[i].capital ? paises[i].capital : 'No capital'), 
-        paises && (paises[j].capital ? paises[j].capital : 'No capital'),
-        paises && (paises[k].capital ? paises[k].capital : 'No capital'),
-        paises && (paises[l].capital ? paises[l].capital : 'No capital')
+        paises && (paises[i].capital ? [paises[i].capital, 'correct'] : 'No capital'), 
+        paises && (paises[j].capital ? [paises[j].capital, 'incorrect'] : 'No capital'),
+        paises && (paises[k].capital ? [paises[k].capital, 'incorrect'] : 'No capital'),
+        paises && (paises[l].capital ? [paises[l].capital, 'incorrect'] : 'No capital')
     ]
     const fourBtns = Array.from({length:4}, (_,index) =>{
         const letters = ['A','B','C','D']
-        console.log(order);
         
             let m = Math.floor(Math.random()*(4-index))
             let position = order[m]
-            order.splice(m, 1)
-            console.log(m);
-            console.log(position);
+            order.splice(m, 1) //Determina la pregunta que se enseñará en el botón correspondiente
             
-            return <QuestionBtn key={index} letter={letters[index]} question={opciones[position]} position={position}></QuestionBtn>
+            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0][0]} value={paises && opciones[position][1]}></QuestionBtn>
         
     }) 
 
     const q = `What is the capital of ${paises ? paises[i].name.common : '...'}?`
 
+    //Componente principal
     return(
         <BoxQ>
             <div className="title">

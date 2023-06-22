@@ -11,4 +11,16 @@
   font-family: 'Poppins', sans-serif; 
 }
 
+.correct,.correct:focus{
+  background-color: #60BF88 !important;
+  border-color: #60BF88 !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+.incorrect,.incorrect:focus{
+  background-color: #EA8282 !important;
+  border-color: #EA8282 !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
 
