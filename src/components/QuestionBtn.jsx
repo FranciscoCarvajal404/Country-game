@@ -22,6 +22,10 @@ const ButtonQ = styled(Button)`
         color: rgba(255, 255, 255, 0.87);
     }
 
+    :focus{
+        outline: none;
+    }
+
     span{
         font-weight: 600;
         margin-right: 32px;

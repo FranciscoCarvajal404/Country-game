@@ -62,13 +62,38 @@ const BoxQ = styled(Box)`
     }
 `
 
-let i = Math.floor(Math.random()*250)
 
 const Question = ({paises}) =>{
     
-    const q1 = `What is the capital of ${paises ? paises[i].name.common : '...'}`
-
     
+    //Renderizacion de botones con sus opciones
+    let i = Math.floor(Math.random()*250)
+    let j = Math.floor(Math.random()*250)
+    let k = Math.floor(Math.random()*250)
+    let l = Math.floor(Math.random()*250)
+    let order = [0,1,2,3]
+    let opciones = [
+        paises && (paises[i].capital ? paises[i].capital : 'No capital'), 
+        paises && (paises[j].capital ? paises[j].capital : 'No capital'),
+        paises && (paises[k].capital ? paises[k].capital : 'No capital'),
+        paises && (paises[l].capital ? paises[l].capital : 'No capital')
+    ]
+    const fourBtns = Array.from({length:4}, (_,index) =>{
+        const letters = ['A','B','C','D']
+        console.log(order);
+        
+            let m = Math.floor(Math.random()*(4-index))
+            let position = order[m]
+            order.splice(m, 1)
+            console.log(m);
+            console.log(position);
+            
+            return <QuestionBtn key={index} letter={letters[index]} question={opciones[position]} position={position}></QuestionBtn>
+        
+    }) 
+
+    const q = `What is the capital of ${paises ? paises[i].name.common : '...'}?`
+
     return(
         <BoxQ>
             <div className="title">
@@ -76,12 +101,9 @@ const Question = ({paises}) =>{
                 <img src={adventure}/>
             </div>
             <div className="question">
-                <h2>{q1}</h2>
+                <h2>{q}</h2>
                 <div className="options-box">
-                    <QuestionBtn letter = {'a'} question = {'a'}></QuestionBtn>
-                    <QuestionBtn letter = {'b'} question = {'b'}></QuestionBtn>
-                    <QuestionBtn letter = {'C'} question = {'c'}></QuestionBtn>
-                    <QuestionBtn letter = {'D'} question = {'d'}></QuestionBtn>
+                    {fourBtns}
                 </div>
             </div>
         </BoxQ>
