@@ -43,10 +43,8 @@ const ButtonQ = styled(Button)`
 const isCorrect = (e) =>{
     const btn = e.target
     if(btn.value == 'correct'){
-        console.log('correct');
         btn.classList.add('correct')
     }else{
-        console.log('incorrect');
         btn.classList.add('incorrect')
     }
 }
