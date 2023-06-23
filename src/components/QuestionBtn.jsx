@@ -6,12 +6,12 @@ const ButtonQ = styled(Button)`
     display: flex;
     justify-content: flex-start;
 
-    color: #5256a1;
+    color: rgba(96, 102, 208, 0.70);
     font-weight: 500;
 
     border-radius: 10px;
 
-    border: 1px solid #5256a1;
+    border: 2px solid rgba(96, 102, 208, 0.70);
 
     tab-size: 8;
     font-family: 'Poppins', sans-serif; 
@@ -24,7 +24,7 @@ const ButtonQ = styled(Button)`
 
     :hover{
         background-color: none;
-        border: 1px solid #5256a1;
+        border: 2px solid rgba(96, 102, 208, 0.70);
         opacity: 1;
     }
 
@@ -41,29 +41,28 @@ const ButtonQ = styled(Button)`
 `
 
 
-const QuestionBtn = ({letter, opcion, value, setNext, setNextBtn}) =>{
+const QuestionBtn = ({letter, opcion, value}) =>{
 
     //Funcion para determinar si la respuesta es correct o no
     const isCorrect = (e) =>{
         const btn = e.target
         const rest = btn.parentElement.children
+        const next = btn.parentElement.nextSibling.children[0]
         if(btn.value == 'correct'){
             btn.classList.add('correct')
+            next.style.display = 'block'
             for (let index = 0; index <= 3; index++) {
                 rest[index].setAttribute('disabled','disabled')
             }
-            setNextBtn(true)
-            setNext(true)
         }else{
             btn.classList.add('incorrect')
+            next.style.display = 'block'
             for (let index = 0; index <= 3; index++) {
                 if (rest[index].value == 'correct') {
                     rest[index].classList.add('correct')
                 }
                 rest[index].setAttribute('disabled','disabled')
             }
-            setNextBtn(true)
-            setNext(false)
         }
     }
 

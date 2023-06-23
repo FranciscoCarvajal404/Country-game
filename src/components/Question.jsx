@@ -36,7 +36,7 @@ const BoxQ = styled(Box)`
     
     .question{
 
-        padding: 64px 32px 32px 32px;
+        padding: 4.25rem 2rem 2rem 2rem;
 
         background-color: rgba(255, 255, 255, 0.87);
         color: #242424;
@@ -54,6 +54,29 @@ const BoxQ = styled(Box)`
         gap: 32px;
     }
 
+    .div-btn{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .next{
+        display: none;
+        margin-top: 43px;
+        background-color: #F9A826;
+        border-color: #F9A826;
+        color: rgba(255, 255, 255, 0.87);
+        align-self: flex-end;
+        box-shadow: 0px 2px 4px 0px rgba(252, 168, 47, 0.40);
+
+        :hover{
+            outline: none;
+            background-color: #eea022;
+            border-color: #eea022;
+            
+        }
+    }
+
     @media (width >= 1024px){
         .title{
             h1{
@@ -62,13 +85,14 @@ const BoxQ = styled(Box)`
         }
     }
 `
+
 const url = 'https://restcountries.com/v3.1/all'
 
 const Question = () =>{
 
     const [paises, setPaises] = useState()
-    const [next, setNext] = useState()
-    const [nextBtn, setNextBtn] = useState(false)
+
+    
 
     useEffect(()=>{
         fetch(url)
@@ -96,7 +120,7 @@ const Question = () =>{
             let position = order[m]
             order.splice(m, 1) //Determina la pregunta que se enseñará en el botón correspondiente
             
-            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} value={paises && opciones[position][1]} setNext= {setNext} setNextBtn= {setNextBtn}></QuestionBtn>
+            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} value={paises && opciones[position][1]}></QuestionBtn>
         
     }) 
     
@@ -115,9 +139,9 @@ const Question = () =>{
                 <div className="options-box">
                     {fourBtns}
                 </div>
-                {
-                    nextBtn && (next ? <button>Next</button> : <button>Finish</button>)
-                }
+                <div className="div-btn">
+                <button className="next">Next</button>
+                </div>
             </div>
         </BoxQ>
     )
