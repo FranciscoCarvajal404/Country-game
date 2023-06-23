@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 import QuestionBtn from "./QuestionBtn"
 
 import adventure from "../assets/adventure.svg"
+import { useEffect, useState } from "react"
 
 const BoxQ = styled(Box)`
 
@@ -61,11 +62,21 @@ const BoxQ = styled(Box)`
         }
     }
 `
+const url = 'https://restcountries.com/v3.1/all'
+
+const Question = () =>{
+
+    const [paises, setPaises] = useState()
+    const [next, setNext] = useState()
+    const [nextBtn, setNextBtn] = useState(false)
+
+    useEffect(()=>{
+        fetch(url)
+        .then((response)=>response.json())
+        .then((data)=>setPaises(data))
+    },[])
 
 
-const Question = ({paises}) =>{
-    
-    
     //Renderizacion de botones con sus opciones
     let i = Math.floor(Math.random()*250)
     let j = Math.floor(Math.random()*250)
@@ -85,9 +96,10 @@ const Question = ({paises}) =>{
             let position = order[m]
             order.splice(m, 1) //Determina la pregunta que se enseñará en el botón correspondiente
             
-            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} value={paises && opciones[position][1]}></QuestionBtn>
+            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} value={paises && opciones[position][1]} setNext= {setNext} setNextBtn= {setNextBtn}></QuestionBtn>
         
     }) 
+    
 
     const q = `What is the capital of ${paises ? paises[i].name.common : '...'}?`
 
@@ -103,6 +115,9 @@ const Question = ({paises}) =>{
                 <div className="options-box">
                     {fourBtns}
                 </div>
+                {
+                    nextBtn && (next ? <button>Next</button> : <button>Finish</button>)
+                }
             </div>
         </BoxQ>
     )

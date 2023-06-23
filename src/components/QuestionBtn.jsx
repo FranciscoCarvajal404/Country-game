@@ -41,7 +41,7 @@ const ButtonQ = styled(Button)`
 `
 
 
-const QuestionBtn = ({letter, opcion, value,}) =>{
+const QuestionBtn = ({letter, opcion, value, setNext, setNextBtn}) =>{
 
     //Funcion para determinar si la respuesta es correct o no
     const isCorrect = (e) =>{
@@ -52,6 +52,8 @@ const QuestionBtn = ({letter, opcion, value,}) =>{
             for (let index = 0; index <= 3; index++) {
                 rest[index].setAttribute('disabled','disabled')
             }
+            setNextBtn(true)
+            setNext(true)
         }else{
             btn.classList.add('incorrect')
             for (let index = 0; index <= 3; index++) {
@@ -60,6 +62,8 @@ const QuestionBtn = ({letter, opcion, value,}) =>{
                 }
                 rest[index].setAttribute('disabled','disabled')
             }
+            setNextBtn(true)
+            setNext(false)
         }
     }
 
