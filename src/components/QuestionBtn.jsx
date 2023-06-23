@@ -16,7 +16,7 @@ const ButtonQ = styled(Button)`
     tab-size: 8;
     font-family: 'Poppins', sans-serif; 
 
-    :active{
+    :enabled:active{
         background-color: #F9A826;
         border-color: #F9A826;
         color: rgba(255, 255, 255, 0.87);
@@ -41,7 +41,7 @@ const ButtonQ = styled(Button)`
 `
 
 
-const QuestionBtn = ({letter, opcion, value}) =>{
+const QuestionBtn = ({letter, opcion, value,}) =>{
 
     //Funcion para determinar si la respuesta es correct o no
     const isCorrect = (e) =>{
@@ -49,13 +49,16 @@ const QuestionBtn = ({letter, opcion, value}) =>{
         const rest = btn.parentElement.children
         if(btn.value == 'correct'){
             btn.classList.add('correct')
+            for (let index = 0; index <= 3; index++) {
+                rest[index].setAttribute('disabled','disabled')
+            }
         }else{
             btn.classList.add('incorrect')
             for (let index = 0; index <= 3; index++) {
                 if (rest[index].value == 'correct') {
                     rest[index].classList.add('correct')
                 }
-                
+                rest[index].setAttribute('disabled','disabled')
             }
         }
     }
