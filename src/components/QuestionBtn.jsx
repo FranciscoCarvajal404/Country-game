@@ -37,21 +37,31 @@ const ButtonQ = styled(Button)`
         margin-right: 32px;
     }
 
+
 `
 
-//Funcion para determinar si la respuesta es correct o no
-const isCorrect = (e) =>{
-    const btn = e.target
-    if(btn.value == 'correct'){
-        btn.classList.add('correct')
-    }else{
-        btn.classList.add('incorrect')
-    }
-}
 
 const QuestionBtn = ({letter, opcion, value}) =>{
+
+    //Funcion para determinar si la respuesta es correct o no
+    const isCorrect = (e) =>{
+        const btn = e.target
+        const rest = btn.parentElement.children
+        if(btn.value == 'correct'){
+            btn.classList.add('correct')
+        }else{
+            btn.classList.add('incorrect')
+            for (let index = 0; index <= 3; index++) {
+                if (rest[index].value == 'correct') {
+                    rest[index].classList.add('correct')
+                }
+                
+            }
+        }
+    }
+
     return(
-        <ButtonQ variant="outlined" onClick={(e,value)=>isCorrect(e,value)} value={value}>
+        <ButtonQ variant="outlined" onClick={(e)=>isCorrect(e)} value={value}>
             <span>{letter}</span>
             {opcion}
         </ButtonQ>
