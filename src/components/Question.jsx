@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Box } from "@mui/material"
 import styled from "@emotion/styled"
+import { useNavigate } from "react-router-dom"
 import QuestionBtn from "./QuestionBtn"
 
 import adventure from "../assets/adventure.svg"
@@ -93,15 +94,26 @@ const Question = () =>{
     const [paises, setPaises] = useState()
     const [score, setScore] = useState(0)
 
+    const navigate = useNavigate()
+
+
     const nextQuestion = (e) =>{
         const buttons = e.target.parentElement.previousSibling.children;
+        const next = e.target.value
         setScore(score+1)
 
-        for (let index = 0; index <=3; index++) {
-            buttons[index].removeAttribute('disabled')
-            buttons[index].classList.remove('incorrect')
-            buttons[index].classList.remove('correct')
+        if (next == 'correct') {
+            for (let index = 0; index <=3; index++) {
+                buttons[index].removeAttribute('disabled')
+                buttons[index].classList.remove('incorrect')
+                buttons[index].classList.remove('correct')
+            }
+            
+        }else{
+            return navigate('/Game-over')
         }
+
+
     }
 
     useEffect(()=>{

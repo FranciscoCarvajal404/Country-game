@@ -51,12 +51,14 @@ const QuestionBtn = ({letter, opcion, value}) =>{
         if(btn.value == 'correct'){
             btn.classList.add('correct')
             next.style.display = 'block'
+            next.setAttribute('value','correct')
             for (let index = 0; index <= 3; index++) {
                 rest[index].setAttribute('disabled','disabled')
             }
         }else{
             btn.classList.add('incorrect')
             next.style.display = 'block'
+            next.setAttribute('value','incorrect')
             for (let index = 0; index <= 3; index++) {
                 if (rest[index].value == 'correct') {
                     rest[index].classList.add('correct')
