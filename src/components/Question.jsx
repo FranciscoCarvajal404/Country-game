@@ -89,7 +89,7 @@ const BoxQ = styled(Box)`
 
 const url = 'https://restcountries.com/v3.1/all'
 
-const Question = () =>{
+const Question = ({handleScore}) =>{
 
     const [paises, setPaises] = useState()
     const [score, setScore] = useState(0)
@@ -110,10 +110,9 @@ const Question = () =>{
             }
             
         }else{
+            handleScore(score)
             return navigate('/Game-over')
         }
-
-
     }
 
     useEffect(()=>{
