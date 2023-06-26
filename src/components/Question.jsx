@@ -49,6 +49,13 @@ const BoxQ = styled(Box)`
             background-color: none;
         }
 
+        h2{
+            color: #1D355D;
+            font-size: 1.5rem;
+            font-family: Poppins;
+            font-weight: 700;
+        }
+
     }
     .options-box{
         display: flex;
@@ -86,6 +93,8 @@ const BoxQ = styled(Box)`
     }
 
     .flag{
+        max-width: 7rem;
+        margin-bottom: 1.75rem;
     }
 
     @media (width >= 1024px){
@@ -97,7 +106,7 @@ const BoxQ = styled(Box)`
     }
 `
 
-const url = 'https://restcountries.com/v3.1/all'
+const url = 'https://restcountries.com/v3.1/all?fields=name,flags,capital'
 
 const Question = ({handleScore}) =>{
 
@@ -148,10 +157,10 @@ const Question = ({handleScore}) =>{
 
     let order = [0,1,2,3]
     let opciones = [
-        paises && (paises[i] ? [paises[i].capital ? paises[i].capital : ['No capital'] , paises[i].name.common, 'correct'] : ['No country']), 
-        paises && (paises[j] ? [paises[j].capital ? paises[j].capital : ['No capital'], paises[j].name.common, 'incorrect'] : ['No country']),
-        paises && (paises[k] ? [paises[k].capital ? paises[k].capital : ['No capital'], paises[k].name.common, 'incorrect'] : ['No country']),
-        paises && (paises[l] ? [paises[l].capital ? paises[l].capital : ['No capital'], paises[l].name.common, 'incorrect'] : ['No country'])
+        paises && (paises[i] ? [paises[i].capital[0] ? [paises[i].capital] : ['No capital'] , paises[i].name.common, 'correct'] : ['No country']), 
+        paises && (paises[j] ? [paises[j].capital[0] ? [paises[j].capital] : ['No capital'], paises[j].name.common, 'incorrect'] : ['No country']),
+        paises && (paises[k] ? [paises[k].capital[0] ? [paises[k].capital] : ['No capital'], paises[k].name.common, 'incorrect'] : ['No country']),
+        paises && (paises[l] ? [paises[l].capital[0] ? [paises[l].capital] : ['No capital'], paises[l].name.common, 'incorrect'] : ['No country'])
     ]
     const fourBtns = Array.from({length:4}, (_,index) =>{
         const letters = ['A','B','C','D']
@@ -160,10 +169,9 @@ const Question = ({handleScore}) =>{
             let position = order[m]
             order.splice(m, 1) //Determina la pregunta que se enseñará en el botón correspondiente
             
-            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} opcion2={paises && opciones[position][1]}value={paises && opciones[position][2]} qi={qi}></QuestionBtn >
+            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} opcion2={paises && opciones[position][1]}value={paises && opciones[position][2]} qi={qi} debug={position}></QuestionBtn >
         
     }) 
-    
     
 
     //Componente principal
@@ -177,7 +185,7 @@ const Question = ({handleScore}) =>{
                 <h2>{
                     q[qi] == q1 ? q1 : 
                     <div className="flag-q">
-                        <p className="flag"/>{paises ? paises[i].flag : '...'}<p/>
+                        <img className="flag" src={paises ? paises[i].flags.svg : '...'}/>
                         {q2}
                     </div>
                 }</h2>

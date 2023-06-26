@@ -8,6 +8,8 @@ const ButtonQ = styled(Button)`
 
     color: rgba(96, 102, 208, 0.70);
     font-weight: 500;
+    font-size: 1.125rem;
+    text-transform: none;
 
     border-radius: 10px;
 
