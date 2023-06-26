@@ -99,6 +99,7 @@ const Question = ({handleScore}) =>{
 
     const nextQuestion = (e) =>{
         const buttons = e.target.parentElement.previousSibling.children;
+        const nextBtn = e.target
         const next = e.target.value
         setScore(score+1)
 
@@ -108,6 +109,8 @@ const Question = ({handleScore}) =>{
                 buttons[index].classList.remove('incorrect')
                 buttons[index].classList.remove('correct')
             }
+
+            nextBtn.style.display = 'none'
             
         }else{
             handleScore(score)
