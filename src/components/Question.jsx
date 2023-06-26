@@ -78,6 +78,11 @@ const BoxQ = styled(Box)`
         }
     }
 
+    .flag-q{
+        display: flex;
+        flex-direction: column;
+    }
+
     @media (width >= 1024px){
         .title{
             h1{
@@ -130,12 +135,18 @@ const Question = ({handleScore}) =>{
     let j = Math.floor(Math.random()*250)
     let k = Math.floor(Math.random()*250)
     let l = Math.floor(Math.random()*250)
+
+    const q1 = `What is the capital of ${paises ? paises[i].name.common : '...'}?`
+    const q2 = `Which country does this flag belong to?`
+    const q = [q1,q2]
+    let qi =Math.floor(Math.random()*2)
+
     let order = [0,1,2,3]
     let opciones = [
-        paises && (paises[i].capital ? [paises[i].capital, 'correct'] : ['No capital']), 
-        paises && (paises[j].capital ? [paises[j].capital, 'incorrect'] : ['No capital']),
-        paises && (paises[k].capital ? [paises[k].capital, 'incorrect'] : ['No capital']),
-        paises && (paises[l].capital ? [paises[l].capital, 'incorrect'] : ['No capital'])
+        paises && (paises[i].capital ? [paises[i].capital, paises[i].name.common, 'correct'] : ['No capital']), 
+        paises && (paises[j].capital ? [paises[j].capital, paises[j].name.common, 'incorrect'] : ['No capital']),
+        paises && (paises[k].capital ? [paises[k].capital, paises[k].name.common, 'incorrect'] : ['No capital']),
+        paises && (paises[l].capital ? [paises[l].capital, paises[l].name.common, 'incorrect'] : ['No capital'])
     ]
     const fourBtns = Array.from({length:4}, (_,index) =>{
         const letters = ['A','B','C','D']
@@ -144,12 +155,11 @@ const Question = ({handleScore}) =>{
             let position = order[m]
             order.splice(m, 1) //Determina la pregunta que se enseñará en el botón correspondiente
             
-            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} value={paises && opciones[position][1]}></QuestionBtn>
+            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} opcion2={paises && opciones[position][1]}value={paises && opciones[position][2]} qi={qi}></QuestionBtn>
         
     }) 
     
-
-    const q = `What is the capital of ${paises ? paises[i].name.common : '...'}?`
+    
 
     //Componente principal
     return(
@@ -159,7 +169,13 @@ const Question = ({handleScore}) =>{
                 <img src={adventure}/>
             </div>
             <div className="question">
-                <h2>{q}</h2>
+                <h2>{
+                    q[qi] == q1 ? q1 : 
+                    <div className="flag-q">
+                        <p className="flag"/>{paises ? paises[i].flag : '...'}<p/>
+                        {q2}
+                    </div>
+                }</h2>
                 <div className="options-box">
                     {fourBtns}
                 </div>

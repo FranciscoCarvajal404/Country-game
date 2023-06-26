@@ -41,7 +41,7 @@ const ButtonQ = styled(Button)`
 `
 
 
-const QuestionBtn = ({letter, opcion, value}) =>{
+const QuestionBtn = ({letter, opcion,opcion2, value, qi}) =>{
 
     //Funcion para determinar si la respuesta es correct o no
     const isCorrect = (e) =>{
@@ -71,7 +71,9 @@ const QuestionBtn = ({letter, opcion, value}) =>{
     return(
         <ButtonQ variant="outlined" onClick={(e)=>isCorrect(e)} value={value}>
             <span>{letter}</span>
-            {opcion}
+            {
+                qi == 1 ? opcion2 : opcion
+            }
         </ButtonQ>
     )
 }
