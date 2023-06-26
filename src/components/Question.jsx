@@ -48,6 +48,7 @@ const BoxQ = styled(Box)`
         div{
             background-color: none;
         }
+
     }
     .options-box{
         display: flex;
@@ -81,6 +82,10 @@ const BoxQ = styled(Box)`
     .flag-q{
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .flag{
     }
 
     @media (width >= 1024px){
@@ -155,7 +160,7 @@ const Question = ({handleScore}) =>{
             let position = order[m]
             order.splice(m, 1) //Determina la pregunta que se enseñará en el botón correspondiente
             
-            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} opcion2={paises && opciones[position][1]}value={paises && opciones[position][2]} qi={qi}></QuestionBtn>
+            return <QuestionBtn key={index} letter={letters[index]} opcion={paises && opciones[position][0]} opcion2={paises && opciones[position][1]}value={paises && opciones[position][2]} qi={qi}></QuestionBtn >
         
     }) 
     
