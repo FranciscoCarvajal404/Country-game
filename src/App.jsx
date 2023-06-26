@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <Router basename='/Country-game/'>
+      <Router>
         <Routes>
           <Route path='/' element={<Question handleScore={handleScore}/>}/>
           <Route path='/Game-over' element={<GameOver score={score} setScore={setScore}/>}/>
