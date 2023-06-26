@@ -143,10 +143,10 @@ const Question = ({handleScore}) =>{
 
     let order = [0,1,2,3]
     let opciones = [
-        paises && (paises[i].capital ? [paises[i].capital, paises[i].name.common, 'correct'] : ['No capital']), 
-        paises && (paises[j].capital ? [paises[j].capital, paises[j].name.common, 'incorrect'] : ['No capital']),
-        paises && (paises[k].capital ? [paises[k].capital, paises[k].name.common, 'incorrect'] : ['No capital']),
-        paises && (paises[l].capital ? [paises[l].capital, paises[l].name.common, 'incorrect'] : ['No capital'])
+        paises && (paises[i] ? [paises[i].capital ? paises[i].capital : ['No capital'] , paises[i].name.common, 'correct'] : ['No country']), 
+        paises && (paises[j] ? [paises[j].capital ? paises[j].capital : ['No capital'], paises[j].name.common, 'incorrect'] : ['No country']),
+        paises && (paises[k] ? [paises[k].capital ? paises[k].capital : ['No capital'], paises[k].name.common, 'incorrect'] : ['No country']),
+        paises && (paises[l] ? [paises[l].capital ? paises[l].capital : ['No capital'], paises[l].name.common, 'incorrect'] : ['No country'])
     ]
     const fourBtns = Array.from({length:4}, (_,index) =>{
         const letters = ['A','B','C','D']
